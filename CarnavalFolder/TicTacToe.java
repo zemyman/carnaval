@@ -10,7 +10,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class TicTacToe extends JFrame {
-    public static int wins;
+    public static int wins=0;
 
     private class ButtonListener implements ActionListener {
         private int row;
