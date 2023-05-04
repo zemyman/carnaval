@@ -1,14 +1,16 @@
 package CarnavalFolder;
 
-
-
 import java.awt.BorderLayout;
+import java.awt.Button;
 import java.awt.Color;
-
+import java.awt.Component;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
-
+import java.awt.Image;
+import java.awt.LayoutManager;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -16,6 +18,7 @@ import java.io.InputStream;
 import java.net.Socket;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -23,24 +26,54 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import CarnavalFolder.TicTacToe.OtherProject;
-
+import org.w3c.dom.Text;
 
 public class carnaval {
-   
+
     public static boolean refresh = false;
     public static boolean refresh2 = false;
-    
+
     public static int score1;
+    int pointAmount;
+    public static Object frame;
+    private static int score = 0;
 
     public static void main(String[] args) throws Exception {
-      
-    
-        StoreOp myStore = new StoreOp();
-        StoreOp myOption2 = new option2();
-        StoreOp myOption3 = new option3();
+        new carnaval();
 
-        JPanel shop = new JPanel();
+    }
+
+    public carnaval() {
+        ImageIcon coke = new ImageIcon("coke2.jpg");
+        Image image = coke.getImage(); // transform it
+        Image newimg = image.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
+        coke = new ImageIcon(newimg);  // transform it back
+        /*
+         * My main constructor. well coding i found that this Jframe needed to be
+         * updated after sending score through the get score method in the carnaval
+         * class well it was in the main method
+         * so what i did to overcome this proplem was put the Jframe in the constructor
+         * and have it so when you create a new instance of TicTacToe it disposes the
+         * instance of carnaval and
+         * creates a new instance of carnaval with the score updated.
+         */
+
+        JPanel items = new JPanel();
+        items.setBounds(250, 200, 250, 50);
+        items.setBackground(Color.green);
+        //items.setLayout(new GridLayout(1, 1));
+        // items.add(Button2());
+        JLabel texts = new JLabel();
+        texts.setIcon(coke);
+        texts.setVisible(true);
+        
+
+        StoreOp myStore = new StoreOp(); // creating a new StoreOp object
+        StoreOp myOption2 = new option2(); // creating a option 2 object
+        StoreOp myOption3 = new option3(); // creating a option 3 object
+
+        JPanel shop = new JPanel(); // creating a new JPanel thats for the shop, this is where all our options
+                                    // objects go
         shop.setBounds(0, 300, 500, 100);
         shop.setBackground(Color.WHITE);
         shop.setLayout(new GridLayout(0, 2));
@@ -48,14 +81,16 @@ public class carnaval {
         shop.add(myOption2.oP1());
         shop.add(myOption3.oP1());
 
-        JPanel games = new JPanel();
+        JPanel games = new JPanel(); // creating a new JPanel for our games that are going to be accsessable through
+                                     // the main screen(carnaval)
         games.setBounds(0, 0, 250, 250);
         games.setBackground(Color.blue);
-        games.add(tictactoeButton());
+        // games.add(tictactoeButton());
         games.add(Button2());
 
-        JFrame frame = new JFrame();
-        frame.setSize(500, 500);
+        JFrame frame = new JFrame(); // this is creating our JFrame where all our panels are going to be added to.
+                                     // not just panels althogh, you can add
+        frame.setSize(500, 500); // buttons or anyother form of GUI element
         frame.setVisible(true);
         frame.setLayout(null);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,46 +98,80 @@ public class carnaval {
         frame.add(shop);
         frame.add(shoptitle());
         frame.add(games);
+        frame.add(items);
         frame.setVisible(false);
         frame.setVisible(true);
-        JButton button2 = new JButton();
-        button2.setText("refresh");
-        button2.setBounds(250, 15, 250, 50);
-        button2.setFont(new Font("Comic Sans", Font.BOLD, 12));
-        button2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
-       
-                 frame.setVisible(false);
-                 frame.setVisible(true);
-            }
-        });
-        frame.add(button2);
-    }
-    
+        frame.add(texts);
 
-   
-
-    public static JButton tictactoeButton() {
-        JButton button = new JButton();
-        button.setText("click to play tic tac toe (2 players)");
-        button.setBounds(0, 15, 250, 50);
+        JButton button = new JButton(); // This is the button that creates a new instance of TicTacToe and disposes the
+                                        // frame this button is crusal
+        button.setText("click to play tic tac toe (2 players)"); // to my game becuase without it you wouldnt be able to
+                                                                 // make a new instance of TicTacToe
+        button.setBounds(0, 40, 250, 30);
         button.setFont(new Font("Comic Sans", Font.BOLD, 12));
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
-                 Thread t = new Thread(() -> new TicTacToe());
-                t.start();
-                
-                
-              
+                new TicTacToe();
+                new TicTacToeInstrutions();
+                frame.dispose();
+
             }
         });
-
-        return button;
+        games.add(button);
+        /*
+         * JButton button2 = new JButton();
+         * button2.setText("refresh");
+         * button2.setBounds(250, 15, 250, 50);
+         * button2.setFont(new Font("Comic Sans", Font.BOLD, 12));
+         * button2.addActionListener(new ActionListener() {
+         * 
+         * @Override
+         * public void actionPerformed(ActionEvent evt) {
+         * frame.dispose();
+         * 
+         * }
+         * });
+         * frame.add(button2);
+         * 
+         */
     }
 
-    public static JButton Button2() {
+    /*
+     * the setScore method is also another key part of my program. in TicTacToe well
+     * its checking to see who won (X or O) it creates a instance
+     * of carnaval named carnaval. then using carnaval.setScore("int") we can send a
+     * int through to the other object. so inplace of "int"
+     * we would plug in the interger for points
+     * then once we get that int we set it equal to a public int thats alredy in
+     * carnaval class to get our score.
+     */
+    public void setScore(int score) {
+        carnaval.score = score;
+        carnaval.score++;
+
+    }
+
+    /*
+     * public static JButton tictactoeButton() {
+     * JButton button = new JButton();
+     * button.setText("click to play tic tac toe (2 players)");
+     * button.setBounds(0, 15, 250, 50);
+     * button.setFont(new Font("Comic Sans", Font.BOLD, 12));
+     * button.addActionListener(new ActionListener() {
+     * 
+     * @Override
+     * public void actionPerformed(ActionEvent evt) {
+     * new TicTacToe();
+     * // frame.dispose();
+     * 
+     * }
+     * });
+     * 
+     * return button;
+     * }
+     */
+    public static JButton Button2() { // add more
         JButton button1 = new JButton();
         button1.setText("click to play ...");
         button1.setBounds(0, 50, 250, 50);
@@ -117,6 +186,10 @@ public class carnaval {
         return button1;
     }
 
+    // JPanel used to have a title over the shop
+    // The reason why i didnt add a JLabel to my shop Panel is becuase i wanted to
+    // have it straight in the middel without messing
+    // up my layout managers
     public static JPanel shoptitle() {
         JPanel shoptitle = new JPanel();
         shoptitle.setBounds(0, 250, 500, 50);
@@ -128,10 +201,9 @@ public class carnaval {
     }
 
     public static JLabel text() {
-        int value = OtherProject.getIntValue();
-        score1 = value;
+
         JLabel text = new JLabel();
-        text.setText("Shop" + " " + score1);
+        text.setText("Shop" + " ---- " + "points avaiable: " + score);
         text.setFont(new Font("Comic Sans", Font.BOLD, 20));
         text.setVisible(true);
 

@@ -10,7 +10,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class TicTacToe extends JFrame {
-    public static int wins=0;
+    public static int wins;
 
     private class ButtonListener implements ActionListener {
         private int row;
@@ -39,7 +39,7 @@ public class TicTacToe extends JFrame {
     }
 
     public static void main(String[] args) {
-        new TicTacToe();
+      //  new TicTacToe();
     }
 
     private JPanel panel;
@@ -135,7 +135,11 @@ public class TicTacToe extends JFrame {
         }
 
         JOptionPane.showMessageDialog(this, message);
+        carnaval Carnaval = new carnaval();
+        Carnaval.setScore(wins);
+        
         resetBoard();
+        dispose();
     }
 
     private void resetBoard() {
@@ -147,6 +151,7 @@ public class TicTacToe extends JFrame {
         }
         turn = 1;
         statusLabel.setText("Player 1's turn");
+        
     }
     public class OtherProject {
     public static int getIntValue() {
