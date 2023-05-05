@@ -30,24 +30,27 @@ import org.w3c.dom.Text;
 
 public class carnaval {
 
+    public static int tempscore;
+
     public static boolean refresh = false;
     public static boolean refresh2 = false;
 
     public static int score1;
+    public static int score2;
+    public static int score;
     int pointAmount;
     public static Object frame;
-    private static int score = 0;
+    
+    public static int yesOrNo;
 
     public static void main(String[] args) throws Exception {
-        new carnaval();
+        new carnaval(0);
 
     }
 
-    public carnaval() {
-        ImageIcon coke = new ImageIcon("coke2.jpg");
-        Image image = coke.getImage(); // transform it
-        Image newimg = image.getScaledInstance(20, 20, java.awt.Image.SCALE_SMOOTH); // scale it the smooth way
-        coke = new ImageIcon(newimg);  // transform it back
+    public carnaval(int score1) {
+        carnaval.score = score1;
+        
         /*
          * My main constructor. well coding i found that this Jframe needed to be
          * updated after sending score through the get score method in the carnaval
@@ -61,12 +64,8 @@ public class carnaval {
         JPanel items = new JPanel();
         items.setBounds(250, 200, 250, 50);
         items.setBackground(Color.green);
-        //items.setLayout(new GridLayout(1, 1));
+        // items.setLayout(new GridLayout(1, 1));
         // items.add(Button2());
-        JLabel texts = new JLabel();
-        texts.setIcon(coke);
-        texts.setVisible(true);
-        
 
         StoreOp myStore = new StoreOp(); // creating a new StoreOp object
         StoreOp myOption2 = new option2(); // creating a option 2 object
@@ -85,8 +84,7 @@ public class carnaval {
                                      // the main screen(carnaval)
         games.setBounds(0, 0, 250, 250);
         games.setBackground(Color.blue);
-        // games.add(tictactoeButton());
-        games.add(Button2());
+        
 
         JFrame frame = new JFrame(); // this is creating our JFrame where all our panels are going to be added to.
                                      // not just panels althogh, you can add
@@ -101,40 +99,43 @@ public class carnaval {
         frame.add(items);
         frame.setVisible(false);
         frame.setVisible(true);
-        frame.add(texts);
 
+        JButton button1 = new JButton();
+        button1.setText("click to play ");
+        button1.setBounds(0, 10, 250, 35);
+        button1.setFont(new Font("Comic Sans", Font.BOLD, 12));
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent evt) {
+                frame.dispose();
+                new HorseBettingGame(score);
+                
+            }
+        });
+
+        if(yesOrNo == 1){
+            
+        }
         JButton button = new JButton(); // This is the button that creates a new instance of TicTacToe and disposes the
                                         // frame this button is crusal
         button.setText("click to play tic tac toe (2 players)"); // to my game becuase without it you wouldnt be able to
                                                                  // make a new instance of TicTacToe
-        button.setBounds(0, 40, 250, 30);
+        button.setBounds(0, 40, 250, 40);
         button.setFont(new Font("Comic Sans", Font.BOLD, 12));
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent evt) {
                 new TicTacToe();
-                new TicTacToeInstrutions();
+                //new TicTacToeInstrutions();
                 frame.dispose();
 
             }
         });
         games.add(button);
-        /*
-         * JButton button2 = new JButton();
-         * button2.setText("refresh");
-         * button2.setBounds(250, 15, 250, 50);
-         * button2.setFont(new Font("Comic Sans", Font.BOLD, 12));
-         * button2.addActionListener(new ActionListener() {
-         * 
-         * @Override
-         * public void actionPerformed(ActionEvent evt) {
-         * frame.dispose();
-         * 
-         * }
-         * });
-         * frame.add(button2);
-         * 
-         */
+       
+        games.add(button1);
+        
+     
     }
 
     /*
@@ -146,46 +147,22 @@ public class carnaval {
      * then once we get that int we set it equal to a public int thats alredy in
      * carnaval class to get our score.
      */
+   
     public void setScore(int score) {
         carnaval.score = score;
-        carnaval.score++;
+
+        
 
     }
+    public void updateScore(int score1) {
+        
+           
+       }
 
-    /*
-     * public static JButton tictactoeButton() {
-     * JButton button = new JButton();
-     * button.setText("click to play tic tac toe (2 players)");
-     * button.setBounds(0, 15, 250, 50);
-     * button.setFont(new Font("Comic Sans", Font.BOLD, 12));
-     * button.addActionListener(new ActionListener() {
-     * 
-     * @Override
-     * public void actionPerformed(ActionEvent evt) {
-     * new TicTacToe();
-     * // frame.dispose();
-     * 
-     * }
-     * });
-     * 
-     * return button;
-     * }
-     */
-    public static JButton Button2() { // add more
-        JButton button1 = new JButton();
-        button1.setText("click to play ...");
-        button1.setBounds(0, 50, 250, 50);
-        button1.setFont(new Font("Comic Sans", Font.BOLD, 12));
-        button1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent evt) {
+    
 
-            }
-        });
-
-        return button1;
-    }
-
+  
+     
     // JPanel used to have a title over the shop
     // The reason why i didnt add a JLabel to my shop Panel is becuase i wanted to
     // have it straight in the middel without messing
@@ -199,6 +176,8 @@ public class carnaval {
         shoptitle.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
         return shoptitle;
     }
+
+   
 
     public static JLabel text() {
 

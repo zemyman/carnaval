@@ -10,7 +10,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class TicTacToe extends JFrame {
-    public static int wins;
+    public static int wins ;
 
     private class ButtonListener implements ActionListener {
         private int row;
@@ -124,6 +124,7 @@ public class TicTacToe extends JFrame {
 
     private void endGame(int winner) {
         String message;
+        wins++;
         
         if (winner == 0) {
             message = "It's a tie!";
@@ -133,11 +134,14 @@ public class TicTacToe extends JFrame {
         if (winner == 1) {
             wins++;
         }
+        if (winner == 2) {
+            wins--;
+        }
 
         JOptionPane.showMessageDialog(this, message);
-        carnaval Carnaval = new carnaval();
-        Carnaval.setScore(wins);
-        
+       
+      carnaval Carnaval = new carnaval(wins);
+         //Carnaval.setScore(wins); // BUG: for some reson it only sets the score after second game (5-04(8:51pm))
         resetBoard();
         dispose();
     }
