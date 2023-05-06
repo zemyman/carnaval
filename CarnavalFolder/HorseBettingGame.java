@@ -20,7 +20,7 @@ public class HorseBettingGame extends JFrame implements ActionListener {
         panel.setLayout(new GridLayout(5, 2, 10, 10));
         panel.setBackground(new Color(240, 240, 240));
 
-        titleLabel = new JLabel("Welcome to the Horse Betting Game!");
+        titleLabel = new JLabel("Welcome to the Horse Racers!");
         titleLabel.setHorizontalAlignment(JLabel.CENTER);
         titleLabel.setForeground(new Color(70, 130, 180));
         panel.add(titleLabel);

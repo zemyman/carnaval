@@ -124,12 +124,12 @@ public class TicTacToe extends JFrame {
 
     private void endGame(int winner) {
         String message;
-        wins++;
+        
         
         if (winner == 0) {
             message = "It's a tie!";
         } else {
-            message = "Player " + winner + " wins!" + wins;
+            message = "Player " + winner + " wins!";
         }
         if (winner == 1) {
             wins++;
@@ -153,6 +153,7 @@ public class TicTacToe extends JFrame {
                 board[row][col] = 0;
             }
         }
+       
         turn = 1;
         statusLabel.setText("Player 1's turn");
         
