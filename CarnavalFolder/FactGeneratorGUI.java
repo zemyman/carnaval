@@ -62,3 +62,11 @@ public class FactGeneratorGUI {
         this.factGenerator = factGenerator;
     }
 }
+
+// The FactGeneratorGUI class creates a graphical user interface (GUI) for displaying random facts.
+// It has a FactGenerator instance variable that determines the type of facts that will be displayed.
+// The createAndShowGUI method sets up the components of the GUI, including a label for displaying the fact
+// and a button for generating a new fact.
+// The main method creates a new instance of FactGeneratorGUI and sets the FactGenerator to ComputerHardwareFactGenerator,
+// which will display facts related to computer hardware.
+// This is another example of inheritance in which FactGeneratorGUI uses FactGenerator as its parent class.

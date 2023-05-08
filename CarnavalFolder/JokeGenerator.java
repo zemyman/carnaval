@@ -15,8 +15,7 @@ public class JokeGenerator extends JFrame implements ActionListener {
             "What's orange and sounds like a parrot? A carrot!",
             "Why did the golfer wear two pairs of pants? In case he got a hole in one!",
             "Why did the teddy bear say no to dessert? Because she was already stuffed!",
-            "Why did the cookie go to the doctor? Because it was feeling crumbly!",
-            "My unit 3 test mark","Why did the casino go broke? Because it was a slot-less operation"
+            "Why did the cookie go to the doctor? Because it was feeling crumbly!","Why did the casino go broke? Because it was a slot-less operation"
     };
 
     public JokeGenerator() {
@@ -61,3 +60,8 @@ public class JokeGenerator extends JFrame implements ActionListener {
         new JokeGenerator();
     }
 }
+/* the JokeGenerator class encapsulates the jokes array, the generateJoke() method, and the actionPerformed() 
+method. The jokes array and the generateJoke() method are private, which means they can only be accessed within the JokeGenerator class. 
+The actionPerformed() method is public, but it is only used within the JokeGenerator class. By encapsulating the data and methods within a class,
+the JokeGenerator class provides a level of abstraction, making it easier to manage and maintain the code.
+ */

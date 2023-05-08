@@ -1,6 +1,4 @@
 package CarnavalFolder;
-import javax.swing.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -43,3 +41,23 @@ class ComputerHardwareFactGenerator extends FactGenerator {
         facts.add("The first computer processor was the Intel 4004, introduced in 1971.");
     }
 }
+// The FactGenerator abstract class defines a common behavior for generating
+// random facts.
+// It contains a list of facts and a method for getting a random fact from the
+// list.
+// The addFacts method is abstract and must be implemented by its subclasses.
+// The FactGenerator class is extended by two concrete classes:
+// ComputerSoftwareFactGenerator and ComputerHardwareFactGenerator.
+// These two classes implement the addFacts method and provide their own list of
+// facts related to software and hardware, respectively.
+// This is an example of inheritance in which the two concrete classes inherit
+// the common behavior defined by FactGenerator.
+
+// This code uses polymorphism by defining an abstract class FactGenerator with
+// a method
+// addFacts() that is implemented differently in its subclasses
+// ComputerSoftwareFactGenerator and ComputerHardwareFactGenerator. The
+// getRandomFact() method is then called on an instance of one of these
+// subclasses,
+// allowing it to randomly select and return a fact from its respective list of
+// facts.

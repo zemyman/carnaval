@@ -1,11 +1,11 @@
 package CarnavalFolder;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,11 +15,11 @@ import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-public class HorseBettingGameRules extends JFrame {
+public class ThankYou extends JFrame {
 
-    public HorseBettingGameRules() {
+    public ThankYou() {
         // Set up the window
-        setTitle("Horse Racers Instructions");
+        setTitle("THANK YOU FOR PLAYING");
         setSize(500, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -27,11 +27,10 @@ public class HorseBettingGameRules extends JFrame {
         JPanel rulesPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         rulesPanel.setBorder(new EmptyBorder(10, 10, 10, 10)); // add padding
         JTextArea rulesTextArea = new JTextArea(
-                "Rules of the game:\n" +
-                "Chose the ammount you wish to bet.\n" +
-                "Chose what horse you wish to bet on.\n" +
-                "If the horse you bet on wins get 3x the points.\n" +
-                "If the horse you bet on losses you lose the amount you bet."
+                "YOU HAVE WON THE GAME CONGRATS\n" +
+                "I hope you had fun playing my game Mr.Ye\n" +
+                "This project was great practice for my skills in java\n" +
+                ""
         );
         rulesTextArea.setEditable(false);
         rulesTextArea.setFont(new Font("Arial", Font.PLAIN, 14)); // change font
@@ -54,7 +53,7 @@ public class HorseBettingGameRules extends JFrame {
         ));
 
         // Create a title label
-        JLabel titleLabel = new JLabel("Horse Racers Instructions");
+        JLabel titleLabel = new JLabel("YOU WIN");
         titleLabel.setFont(new Font("Arial", Font.BOLD, 18)); // change font
         titleLabel.setBorder(new EmptyBorder(10, 10, 20, 10)); // add padding
 
@@ -72,6 +71,6 @@ public class HorseBettingGameRules extends JFrame {
     }
 
     public static void main(String[] args) {
-      //  new HorseBettingGameRules();
+     new ThankYou();
     }
 }
